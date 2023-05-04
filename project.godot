@@ -6,27 +6,18 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "CSGPolygon",
-"class": "CSGPlusStaircase",
-"language": "GDScript",
-"path": "res://addons/csg_plus/csg_plus_staircase.gd"
-} ]
-_global_script_class_icons={
-"CSGPlusStaircase": ""
-}
+config_version=5
 
 [application]
 
 config/name="CSG Plus Demo"
 run/main_scene="res://demo.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "csg_plus" )
+enabled=PackedStringArray("res://addons/csg_plus/plugin.cfg")
 
 [rendering]
 

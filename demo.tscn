@@ -1,65 +1,64 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://bxtn7n8s0w3i4"]
 
-[ext_resource path="res://addons/csg_plus/csg_plus_staircase.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://addons/csg_plus/csg_plus_staircase_3d.gd" id="1_7a5u8"]
 
-[node name="Spatial" type="Spatial"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_opnie"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[node name="CSGPlusStaircaseCurved" type="CSGPolygon" parent="."]
-polygon = PoolVector2Array( 0, 0, 0, 0.25, 0.5, 0.25, 0.5, 0.5, 1, 0.5, 1, 0.75, 1.5, 0.75, 1.5, 1, 2, 1, 2, 1.25, 2.5, 1.25, 2.5, 1.5, 3, 1.5, 3, 1.75, 3.5, 1.75, 3.5, 2, 4, 2, 4, 2.25, 4.5, 2.25, 4.5, 2.5, 5, 2.5, 5, 2.75, 5.5, 2.75, 5.5, 3, 6, 3, 6, 3.25, 6.5, 3.25, 6.5, 3.5, 7, 3.5, 7, 3.75, 7.5, 3.75, 7.5, 4, 8, 4, 8, 4.25, 8.5, 4.25, 8.5, 4.5, 9, 4.5, 9, 4.75, 9.5, 4.75, 9.5, 5, 10, 5, 10, 5.25, 10.5, 5.25, 10.5, 5.5, 11, 5.5, 11, 5.75, 11.5, 5.75, 11.5, 6, 12, 6, 12, 6.25, 12.5, 6.25, 12.5, 6.5, 13, 6.5, 13, 0 )
+[sub_resource type="Sky" id="Sky_8p5m1"]
+sky_material = SubResource("ProceduralSkyMaterial_opnie")
+
+[sub_resource type="Environment" id="Environment_3wem6"]
+background_mode = 2
+sky = SubResource("Sky_8p5m1")
+tonemap_mode = 3
+tonemap_white = 6.0
+
+[node name="Spatial" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3wem6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.416623, -0.618803, 0.665964, 0, 0.732569, 0.680692, -0.909079, 0.283592, -0.305205, 11.1107, 10.6613, 4.41992)
+shadow_enabled = true
+shadow_bias = 0.04
+shadow_blur = 1.5
+directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 30.0
+
+[node name="CSGPlusStaircaseCurved" type="CSGPolygon3D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, 0.25, 0.5, 0.25, 0.5, 0.5, 1, 0.5, 1, 0.75, 1.5, 0.75, 1.5, 1, 2, 1, 2, 1.25, 2.5, 1.25, 2.5, 1.5, 3, 1.5, 3, 1.75, 3.5, 1.75, 3.5, 2, 4, 2, 4, 0)
 mode = 1
 spin_degrees = 90.0
 spin_sides = 16
-script = ExtResource( 1 )
-staircase_width = 13.0
-staircase_height = 6.5
+script = ExtResource("1_7a5u8")
 
-[node name="CSGBox3" type="CSGBox" parent="CSGPlusStaircaseCurved"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 6.5, -6 )
-operation = 2
-width = 16.0
-height = 8.0
-depth = 16.0
-
-[node name="CSGPlusStaircase2" type="CSGPolygon" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8 )
-polygon = PoolVector2Array( 0, 0, 0, 0.25, 0.5, 0.25, 0.5, 0.5, 1, 0.5, 1, 0.75, 1.5, 0.75, 1.5, 1, 2, 1, 2, 1.25, 2.5, 1.25, 2.5, 1.5, 3, 1.5, 3, 1.75, 3.5, 1.75, 3.5, 2, 4, 2, 4, 2.25, 4.5, 2.25, 4.5, 2.5, 5, 2.5, 5, 0 )
+[node name="CSGPlusStaircase2" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+polygon = PackedVector2Array(0, 0, 0, 0.25, 0.5, 0.25, 0.5, 0.5, 1, 0.5, 1, 0.75, 1.5, 0.75, 1.5, 1, 2, 1, 2, 1.25, 2.5, 1.25, 2.5, 1.5, 3, 1.5, 3, 1.75, 3.5, 1.75, 3.5, 2, 4, 2, 4, 0)
 depth = 8.0
-script = ExtResource( 1 )
-staircase_width = 5.0
-staircase_height = 2.5
+script = ExtResource("1_7a5u8")
 
-[node name="CSGPlusStaircase3" type="CSGPolygon" parent="."]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4.76837e-07 )
-polygon = PoolVector2Array( 0, 0, 0, 0.25, 0.5, 0.25, 0.5, 0.5, 1, 0.5, 1, 0.75, 1.5, 0.75, 1.5, 1, 2, 1, 2, 1.25, 2.5, 1.25, 2.5, 1.5, 3, 1.5, 3, 1.75, 3.5, 1.75, 3.5, 2, 4, 2, 4, 2.25, 4.5, 2.25, 4.5, 2.5, 5, 2.5, 5, 0 )
+[node name="CSGPlusStaircase3" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -4.76837e-07)
+polygon = PackedVector2Array(0, 0, 0, 0.25, 0.5, 0.25, 0.5, 0.5, 1, 0.5, 1, 0.75, 1.5, 0.75, 1.5, 1, 2, 1, 2, 1.25, 2.5, 1.25, 2.5, 1.5, 3, 1.5, 3, 1.75, 3.5, 1.75, 3.5, 2, 4, 2, 4, 0)
 depth = 8.0
-script = ExtResource( 1 )
-staircase_width = 5.0
-staircase_height = 2.5
+script = ExtResource("1_7a5u8")
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.416623, -0.618803, 0.665964, 0, 0.732569, 0.680692, -0.909079, 0.283592, -0.305205, 11.1107, 10.6613, 4.41992 )
-shadow_enabled = true
-shadow_bias = 0.0
-directional_shadow_blend_splits = true
-directional_shadow_bias_split_scale = 0.0
-directional_shadow_max_distance = 50.0
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.5, 4)
+size = Vector3(8, 1, 8)
 
-[node name="CSGBox" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 4 )
-width = 8.0
-depth = 8.0
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.75, -8)
+size = Vector3(8, 2.5, 8)
 
-[node name="CSGBox2" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.25, -9 )
-width = 8.0
-height = 2.5
-depth = 8.0
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.75, 4)
+size = Vector3(8, 2.5, 8)
 
-[node name="CSGBox4" type="CSGBox" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.25, 4 )
-width = 8.0
-height = 2.5
-depth = 8.0
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.992077, -0.0759538, 0.100074, 0, 0.796553, 0.604568, -0.125633, -0.599778, 0.790242, 2.34807, 7.07238, 6.86666 )
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(0.992077, -0.0759538, 0.100074, 0, 0.796553, 0.604568, -0.125633, -0.599778, 0.790242, 2.34807, 7.07238, 6.86666)
